@@ -1,5 +1,8 @@
 package DynamicProgramming;
-
+/*
+Given a set of coin values coins = {c1, c2,..., ck} and a target sum of money n, 
+form the sum n using as few coins as possible.
+*/
 import java.util.Scanner;
 
 public class CoinProblemIterative {
