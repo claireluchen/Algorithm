@@ -1,5 +1,6 @@
 import java.util.*;
 /*
+unbounded knapsack: each item can be taken several times
 set of items
 - weight
 - value
@@ -35,7 +36,7 @@ public class KnapsackProblem {
     for (int i = 1; i < maxArray.length; i++){
       for (int j = 0; j < numOfItems; j++){
     	  //for the object with value[j] to be chosen, the weight[j] has to be less than i
-    	  if (weight[j] <= i){
+        if (weight[j] <= i){
           maxArray[i] = Math.max(maxArray[i], maxArray[i - weight[j]] + value[j]);
         }
       }
