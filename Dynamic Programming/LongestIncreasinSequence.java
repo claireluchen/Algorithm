@@ -1,5 +1,3 @@
-package DynamicProgramming;
-
 import java.util.Scanner;
 
 /*
@@ -20,7 +18,6 @@ public class LongestIncreasinSequence {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int m = in.nextInt() - 1; //m is the position we want to know
 		int n = in.nextInt(); //n is the total number of values
 		int[] numbers = new int[n];
 		for (int i = 0; i < numbers.length; i++) numbers[i] = in.nextInt();
@@ -33,7 +30,8 @@ public class LongestIncreasinSequence {
 				}
 			}
 		}
-		System.out.println(lengths[m]);
+		Arrays.sort(lengths);
+		System.out.println(lengths[n - 1]);
 	}
 
 }
