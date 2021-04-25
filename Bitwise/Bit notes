@@ -1,0 +1,38 @@
+<< is the left shift operator, shifts all the bits to the left
+x << n means shifting the bits of x to the left by n spots; in other words, x becomes x * (2 ^ n)
+101 (5 in decimal) becomes 1010 (10 in decimal)
+
+
+>> is the right shift operator, shifts all the bits to the right
+x >> n means shifting the bits of x to the right by n spots; in other words, x becomes x / (2 ^ n)
+101 (5 in decimal) becomes 10 (2 in decimal)
+
+& is bitwise AND
+  1001
+& 1000
+->1000
+
+| is inclusive OR
+  1001
+| 1000
+->1001
+
+^ is exclusive OR
+  1001
+^ 1000
+->0001
+
+~ "flips" the value with two's complement
+~0000001 -> 1111110
+ex: ~1 -> -2
+General rule is ~x = -x - 1
+
+The leftmost bit is the sign of the number; 0 is positive, 1 is negative
+
+Suppose we have 4 bits, then 3 would be 0011
+Computer uses two's complement 
+To get -3
+1. We get the binary representation of the positive value, which is 0011
+2. We flip around all the bits of the positive, ex: 0011 now becomes 1100
+3. We add one bit to the end of that value, ex: 1100 now becomes 1101
+Thus, 1101 is the binary representation of -3 if we have 4 bits (the leftmost bit, 1, is similar to a negative sign)
