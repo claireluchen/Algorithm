@@ -1,12 +1,3 @@
-<< is the left shift operator, shifts all the bits to the left
-x << n means shifting the bits of x to the left by n spots; in other words, x becomes x * (2 ^ n)
-101 (5 in decimal) becomes 1010 (10 in decimal)
-
-
->> is the right shift operator, shifts all the bits to the right
-x >> n means shifting the bits of x to the right by n spots; in other words, x becomes x / (2 ^ n)
-101 (5 in decimal) becomes 10 (2 in decimal)
-
 & is bitwise AND
   1001
 & 1000
@@ -22,6 +13,17 @@ x >> n means shifting the bits of x to the right by n spots; in other words, x b
 ^ 1000
 ->0001
 
+=====================================================================================================================================================================
+<< is the left shift operator, shifts all the bits to the left
+x << n means shifting the bits of x to the left by n spots; in other words, x becomes x * (2 ^ n)
+101 (5 in decimal) becomes 1010 (10 in decimal)
+
+>> is the right shift operator, shifts all the bits to the right
+x >> n means shifting the bits of x to the right by n spots; in other words, x becomes x / (2 ^ n)
+101 (5 in decimal) becomes 10 (2 in decimal)
+*note that we can use these binary representation as subsets, not just integers
+
+=====================================================================================================================================================================
 ~ "flips" the value with two's complement
 ~0000001 -> 1111110
 ex: ~1 -> -2
@@ -36,3 +38,30 @@ To get -3
 2. We flip around all the bits of the positive, ex: 0011 now becomes 1100
 3. We add one bit to the end of that value, ex: 1100 now becomes 1101
 Thus, 1101 is the binary representation of -3 if we have 4 bits (the leftmost bit, 1, is similar to a negative sign)
+
+=====================================================================================================================================================================
+To check if the i-th element is in the bitmask S:
+if (S & (1 << i) != 0), then the i-th element is in S
+Performing 1 << i ensures that only the i-th bit is switched on
+If the i-th element of i is 1, then S & (1 << i) will equal to 1 << i
+If the i-th element of i is 0, then S & (1 << i) will equal to 0 (Ex: S = 10010, i = 3, S & (1 << i) = 10010 & 01000 = 00000)
+
+=====================================================================================================================================================================
+To insert i-th element into a bitmask S:
+S = S | (1 << i);
+Example: 
+S = 10010001, i = 3
+S |= (1 << i) -> 10010001 |= (1 << 3) -> 10010001 |= (1000) -> 10011001
+Inclusive OR ensures that the i-th position of the bitmask is switched onto 1
+
+=====================================================================================================================================================================
+To remove i-th element from a bitmask S:
+S = S & ~(1 << i);
+Example:
+S = 10011001, i = 3
+S = S & ~(1 << i) -> 10011001 & ~(1 << 3) -> 10011001 & ~(00001000) -> 10011001 & (11110111) -> 10010001
+We initially shift 1 << i so that only the i-th position is turned on in this bitmask
+Then we perform ~ to flip all the bits so that only the i-th position is turned off
+We & the bitmask S with the one we just built (filled with 1s expect at position i) 
+Since x & 1 = x, all bits at positions other than i will be kept the same
+Since x & 0 = 0, the i-bit becomes 0 no matter what its original value was
