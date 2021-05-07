@@ -15,9 +15,6 @@ public class Main {
   static int readInt () throws IOException {
 	  return Integer.parseInt(next());
   }
-  static char readCharacter() throws IOException{
-    return next().charAt(0);
-  }
 
   static int n;
   static ArrayList<Integer>[] adj; //<node, all nodes it is connected to>
@@ -55,40 +52,4 @@ public class Main {
       System.out.println(i + " " + size[i]);
     }
   }
-
-  static class Pair implements Comparable<Pair>{
-	    int x, y;
-	    public Pair(int x, int y){
-	    	this.x = x; this.y = y;
-	    }
-	   
-	    @Override
-	    public int compareTo(Pair obj) {
-	    	if (y < ((Pair) obj).y) return -1;
-        if (y > ((Pair) obj).y) return 1;
-        if (y == ((Pair) obj).y){
-          if (x < ((Pair) obj).x) return 1;
-	    	  if (x > ((Pair) obj).x) return -1;
-        }   
-	    	return 0;
-	    }
-	    
-	    @Override
-	    public boolean equals(Object obj){
-	    	if (obj instanceof Pair && x == ((Pair) obj).x && y == ((Pair) obj).y)
-	    		return true;
-	    	else return false;
-	    }
-	   
-	    @Override
-	    public int hashCode(){
-	    	int result = x / 11 + y;
-	    	return result;
-	    }
-		
-      @Override
-      public String toString(){
-        return "[" + x + ", " + y + "]";
-      }
-	}
 }
