@@ -43,6 +43,7 @@ public class Main {
     for (int u = 2; u <= n; u++){
       int parent = readInt(); //read in the parent node of u
       adj[parent].add(u);
+      adj[u].add(parent);
       value[u] = readInt(); //read in the weight of u
     }
     
