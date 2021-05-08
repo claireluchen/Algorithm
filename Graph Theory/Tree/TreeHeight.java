@@ -42,7 +42,9 @@ public class Main {
     //for nodes 2 to n, read in its parent node
     for (int u = 2; u <= n; u++){
       int parent = readInt(); //read in the parent node of u
+      //add the node both ways because any node can become the root node and child-parent relationship can be "reversed" depending on how we arrange the tree
       adj[parent].add(u);
+      adj[u].add(parent); 
     }
     
     solve(1, 0);
