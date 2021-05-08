@@ -42,6 +42,7 @@ public class Main {
     for (int u = 2; u <= n; u++){
       int parent = readInt();
       adj[parent].add(u);
+      adj[u].add(parent);
     }
     
     solve(1, 0);
