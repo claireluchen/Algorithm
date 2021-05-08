@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 /*
 find the height of each node in a tree
-the height of the bottom node is 0
+(the height of the bottom node is 0)
 */
 public class Main {
   static StringTokenizer st;
@@ -26,7 +26,7 @@ public class Main {
     for (int v : adj[u]){ //for every node u leads to
       if (v != p){ //make sure we don't go in loops
         solve(v, u);
-        height[u] = Math.max(height[v], height[u] - 1) + 1;
+        height[u] = Math.max(height[v] + 1, height[u]);
       }
     }
   }
