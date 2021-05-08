@@ -34,6 +34,7 @@ public class Main {
     for (int i = 2; i < adj.length; i++){
       int parent = readInt(); //read in the parent of node i
       adj[parent].add(i); //add that child node to adj[parent]
+      adj[i].add(parent); //do the reverse since the child-parent relationship can change depending on how we arrange the root
     }
     
     dfs(1, 0); //dfs(x, 0) means appointing x as the root and start traversing from there
