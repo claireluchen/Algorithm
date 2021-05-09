@@ -18,10 +18,8 @@ public class Main {
 
   static int n;
   static ArrayList<Integer>[] adj; //<node, all nodes it is connected to>
-  static int[] size; //size[i] = size of subtree of node i
-  static int[] value; //value[i] = weight of node i
+  static int[] size; //size[i] = size of weight of all nodes in the subtree of node i
   public static void solve(int u, int p){
-    size[u] = value[u];
     for (int v : adj[u]){ //for every node u leads to
       if (v != p){ //make sure we don't go in loops
         solve(v, u);
@@ -37,14 +35,13 @@ public class Main {
       adj[i] = new ArrayList<>();
     }
     size = new int[n + 1];
-    value = new int[n + 1];
     //assume 1 is the root node
     //for nodes 2 to n, read in its parent node
     for (int u = 2; u <= n; u++){
       int parent = readInt(); //read in the parent node of u
       adj[parent].add(u);
       adj[u].add(parent);
-      value[u] = readInt(); //read in the weight of u
+      size[u] = readInt(); //read in the weight of u
     }
     
     solve(1, 0);
