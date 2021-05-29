@@ -1,7 +1,33 @@
 import java.util.*;
 import java.io.*;
 
-//find the first occurence of sub in str and prints out its index (using string hashing)
+/*
+Find the first occurence of sub in str and prints out its index (using string hashing)
+Convert letters to numbers. Ex: WORD —> 23, 15, 18, 4
+Treat each number as a digit in a base-B system. Ex: B = 29
+WORD —> 23 * (29 ^ 3) + 15 * (29 ^ 2) + 18 * (29 ^ 1) + 4 * (29 ^ 0) = 574088
+If the number gets too large, do mod M
+Base B should be a prime Ex: 29 or 31 (around the size of the alphabet)
+Mod M should be a huge prime (collision chance is 1/M) Ex: 10e9 + 7 or 10e9 + 9
+
+Compute hash of every prefix of str (calculateHash() method)
+Ex: str = WORFDWORD
+hash(W) = 23
+hash(WO) = 23 * 29 + 15 = hash(W) * 29 + 15
+hash(WOR) = 23 * (29 ^ 2) + 15 * 29 + 18 = hash(WO) * 29 + 18
+if x == 0, hash[x] = str.charAt(0);
+if x > 0, hash[x] = hash[x - 1] * B + str.charAt(x);
+
+Then, use this prefix array to compute the hash of a string (l, r) (getHash() method)
+hash(RF) = 18 * 29 + 6 = hash(WORF) – hash(WO) * (29 ^ 2)
+if a == 0, getHash() = hash[b]
+if a > 0, getHash() = hash[b] – hash[a – 1] * B ^ (b - a + 1)
+
+The solution to this particular question can be speed up if we calculate the hash of substring of length sub.length() while calculating the prefix hash
+If we don't use methods, the hash[] for the 4 arrays can be calculated simultaneously. 
+In addition, a power[] array can also be used, with power[k] = (A ^ k) % MOD. The power[] array can be filled while we calculate the hash[]. This also saves some time
+With the power[], hash[l, r] = hash[r] - hash[l - 1] * power[l - r + 1];
+*/
 public class StringFinding {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
