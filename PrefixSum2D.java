@@ -1,5 +1,17 @@
 //given four coordinates, calculate the total value covered inside the rectangle
 public class Main{
+  static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
+	static StringTokenizer st;
+	static String next () throws IOException {
+		while (st == null || !st.hasMoreTokens())
+			st = new StringTokenizer(br.readLine().trim());
+		return st.nextToken();
+	}
+	static int readInt () throws IOException {
+		return Integer.parseInt(next());
+	}
+  
   public static void main(String[] args) throws IOException{
     int row = readInt(), col = readInt(); //number of rows and columns of the 2d array
     int[][] psa = new int[row + 1][col + 1];
