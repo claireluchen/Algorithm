@@ -1,3 +1,9 @@
+/*
+calculate 5 ^ 10
+if we write 10 in binary -> 1010
+5 ^ 10 = (5 ^ 8) * (5 ^ 2) = (5 ^ (2 ^ 3)) * (5 ^ (2 ^ 1))
+whenever we see a 1 in the binary form of the exponent, we need to multiply base ^ (2 ^ position of the 1)
+*/
 import java.util.Scanner;
 
 public class Main {
