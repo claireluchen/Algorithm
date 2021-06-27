@@ -41,7 +41,7 @@ int main() {
     cin.tie(0);
     int n, m;
     cin >> n >> m;
-    vector<pair<int, pair<int, int>>> list;
+    vector<pair<int, pair<int, int>>> list; //<weight, (node a, node b)>
     
     for (int i = 0; i < m; i++){
       int a, b, w;
