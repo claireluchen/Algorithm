@@ -1,27 +1,39 @@
+/*
+kruskal's algorithm
+Each node of the graph initially belongs to a separate component. 
+When an edge is added to the tree, the two components which the nodes belong are joined. 
+When all nodes belong to the same component, a MST is formed.
+Sort the edges and greedily take on the smallest one
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
 using ll = long long;
 const int MOD = 1e9 + 9;
 const int MAXN = 1e5 + 5;
-int link[MAXN];
-int ssize[MAXN];
+int link[MAXN]; //stores the previous element it's chained to, stores itself if the element is the representative
+int ssize[MAXN]; //for each representative, the size of the corresponding set
 
-int find(int x) {
+int find(int x) { //returns the representative of x
   while (x != link[x]) x = link[x];
   return x;
 }
 
-bool same(int a, int b) {
-  return find(a) == find(b);
+bool same(int a, int b) { //check if nodes a and b belong to the same set
+  return find(a) == find(b); //if they have the same representative, then they're in the same set
 }
 
-void unite(int a, int b) {
-  a = find(a);
-  b = find(b);
-  if (ssize[a] < ssize[b]) swap(a,b);
-  ssize[a] += ssize[b];
-  link[b] = a;
+void unite(int a, int b) { //unite the sets that contain node a and b
+  a = find(a); //find the representative of a
+  b = find(b); //find the representative of b
+  //join the smaller set to the larger set
+  if (ssize[a] < ssize[b]){
+    ssize[b] += ssize[a];
+    link[a] = b;
+  }else{
+    ssize[a] += ssize[b];
+    link[b] = a;
+  }
 }
 
 int main() {
