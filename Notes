@@ -1,0 +1,1 @@
+The radius r of a circle circumscribing a triangle with sides a, b, c is r = a*b*c/(4*sqrt(s(s-a)(s-b)(s-c))), where s is the semi perimeter: (a+b+c)/2
