@@ -35,9 +35,25 @@ int main() {
   }
 
   int ans = 0;
-  for (int i = 0; i < n; i++){
+  for (int i = 0; i < n; i++){ //calculate the area when taking each bar as the max height
     ans = max(ans, h[i] * (r[i] - l[i] + 1));
   }
   cout << ans << endl;
   return 0;
+}
+
+//shorter code inside a function
+int getMaxRect(){
+  stack<int> st; int area = 0;
+  for (int i = 0; i <= n; i++){
+    while (!st.empty() && h[st.top()] >= h[i]){ //while the previous bar is taller than the current bar
+      int idx = st.top(); st.pop();
+      //lft is the index of the bar before the previous bar, which is the left limit for the previous bar (but this previous bar of the previous bar is shorter than the previous bar and shouldn't be included in the rectangle formed)
+      int lft = st.empty() ? 0 : st.top(); 
+      //i is the index of the current bar, which is the right limit (but the current bar is shorter than the previous bar and shouldn't be included in the rectangle formed with the height of the pervious bar)
+      area = max(area, h[idx] * (i - lft - 1)); //1 is subtracted because in the case of x...x, the number of . is 4 - 0 - 1 = 3
+    }
+    st.push(i);
+  }
+  return area;
 }
