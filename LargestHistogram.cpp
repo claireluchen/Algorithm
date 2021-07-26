@@ -55,5 +55,9 @@ int getMaxRect(){
     }
     st.push(i);
   }
+  while (!st.empty()){ //process all bars not yet processed
+    int idx = st.top(); st.pop();
+    area = max(area, h[idx] * (st.empty() ? n : n - st.top() - 1));
+  }
   return area;
 }
