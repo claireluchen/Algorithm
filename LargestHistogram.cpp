@@ -48,8 +48,8 @@ int getMaxRect(){
   for (int i = 0; i <= n; i++){
     while (!st.empty() && h[st.top()] >= h[i]){ //while the previous bar is taller than the current bar
       int idx = st.top(); st.pop();
-      //lft is the index of the bar before the previous bar, which is the left limit for the previous bar (but this previous bar of the previous bar is shorter than the previous bar and shouldn't be included in the rectangle formed)
-      int lft = st.empty() ? 0 : st.top(); 
+      //lft is the index of the bar before the previous bar, which is the left limit for the previous bar (this previous bar of the previous bar is shorter than the previous bar and shouldn't be included in the rectangle formed)
+      int lft = st.empty() ? -1 : st.top(); //-1 because the first bar is stored at index 0
       //i is the index of the current bar, which is the right limit (but the current bar is shorter than the previous bar and shouldn't be included in the rectangle formed with the height of the pervious bar)
       area = max(area, h[idx] * (i - lft - 1)); //1 is subtracted because in the case of x...x, the number of . is 4 - 0 - 1 = 3
     }
