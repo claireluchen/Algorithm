@@ -16,6 +16,26 @@ const int maxn = 4e5 + 5;
 int n, h[maxn], l[maxn], r[maxn];
 stack<int> st1, st2;
 
+//shorter code inside a function
+int getMaxRect(){
+  stack<int> st; int area = 0; //the stack is strictly increasing
+  for (int i = 0; i <= n; i++){
+    while (!st.empty() && h[st.top()] >= h[i]){ //while the previous bar is taller than the current bar
+      int idx = st.top(); st.pop();
+      //lft is the index of the bar before the previous bar, which is the left limit for the previous bar (this previous bar of the previous bar is shorter than the previous bar and shouldn't be included in the rectangle formed)
+      int lft = st.empty() ? -1 : st.top(); //-1 because the first bar is stored at index 0
+      //i is the index of the current bar, which is the right limit (but the current bar is shorter than the previous bar and shouldn't be included in the rectangle formed with the height of the pervious bar)
+      area = max(area, h[idx] * (i - lft - 1)); //1 is subtracted because in the case of x...x, the number of . is 4 - 0 - 1 = 3
+    }
+    st.push(i);
+  }
+  while (!st.empty()){ //process all bars not yet processed
+    int idx = st.top(); st.pop();
+    area = max(area, h[idx] * (st.empty() ? n : n - st.top() - 1));
+  }
+  return area;
+}
+
 int main() {  
   cin >> n;
   for (int i = 0; i < n; i++) cin >> h[i];
@@ -40,24 +60,4 @@ int main() {
   }
   cout << ans << endl;
   return 0;
-}
-
-//shorter code inside a function
-int getMaxRect(){
-  stack<int> st; int area = 0;
-  for (int i = 0; i <= n; i++){
-    while (!st.empty() && h[st.top()] >= h[i]){ //while the previous bar is taller than the current bar
-      int idx = st.top(); st.pop();
-      //lft is the index of the bar before the previous bar, which is the left limit for the previous bar (this previous bar of the previous bar is shorter than the previous bar and shouldn't be included in the rectangle formed)
-      int lft = st.empty() ? -1 : st.top(); //-1 because the first bar is stored at index 0
-      //i is the index of the current bar, which is the right limit (but the current bar is shorter than the previous bar and shouldn't be included in the rectangle formed with the height of the pervious bar)
-      area = max(area, h[idx] * (i - lft - 1)); //1 is subtracted because in the case of x...x, the number of . is 4 - 0 - 1 = 3
-    }
-    st.push(i);
-  }
-  while (!st.empty()){ //process all bars not yet processed
-    int idx = st.top(); st.pop();
-    area = max(area, h[idx] * (st.empty() ? n : n - st.top() - 1));
-  }
-  return area;
 }
