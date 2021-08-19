@@ -16,7 +16,7 @@ const int maxn = 4e5 + 5;
 int n, h[maxn], l[maxn], r[maxn];
 stack<int> st1, st2;
 
-//shorter code inside a function
+//shorter faster code inside a function
 int getMaxRect(){
   stack<int> st; int area = 0; //the stack is strictly increasing
   for (int i = 0; i <= n; i++){
@@ -31,7 +31,7 @@ int getMaxRect(){
   }
   while (!st.empty()){ //process all bars not yet processed
     int idx = st.top(); st.pop();
-    area = max(area, h[idx] * (st.empty() ? n : n - st.top() - 1));
+    area = max(area, h[idx] * (st.empty() ? n : n - st.top() - 1)); //1 is subtracted because of 0-based indexing, ex: when processing the 2 in [1, 2, 3, 4] where n = 4, it'd be 2 * (4 - 0 - 1)
   }
   return area;
 }
