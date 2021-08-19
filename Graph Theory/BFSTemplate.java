@@ -4,13 +4,13 @@ import java.util.*;
 public class BFSTemplate {
 	static StringTokenizer st;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-  static String next () throws IOException {
-	  while (st == null || !st.hasMoreTokens())
-      st = new StringTokenizer(br.readLine().trim());
-	  return st.nextToken();
+  	static String next () throws IOException {
+		while (st == null || !st.hasMoreTokens())
+      			st = new StringTokenizer(br.readLine().trim());
+	  	return st.nextToken();
 	}
 	static int readInt () throws IOException {
-	  return Integer.parseInt(next());
+		return Integer.parseInt(next());
 	}
 		  
 	public static void main(String[] args) throws IOException {
