@@ -4,7 +4,7 @@ import java.io.*;
 Choosing a subset of items such that we maximize their total value, 
 and their total weight does not exceed the capacity of the container
 
-print out the maximum value
+Print out the maximum value
 */
 public class Main{
 static StringTokenizer st;
