@@ -1,3 +1,8 @@
+/*
+Given strings s and t, find one longest string that is a subsequence of both s and t.
+A subsequence of a string x is the string obtained by removing zero or more characters from x and concatenating the remaining characters without changing the order.
+Turn this into a grid dp: https://usaco.guide/gold/paths-grids?lang=cpp
+*/
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
