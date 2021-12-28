@@ -45,7 +45,7 @@ void up(int x){ //update the father according to the children
   sum[x]=sum[x<<1]+sum[x<<1|1]; //the father is the sum of its children
 }
 
-void down(int x, int l, int r){ //transfer the changes applied to parent to the children
+void down(int x, int l, int r){ //transfer the changes applied to parent to its children
   if (add[x]){ //if we have marked values to add for the children
     int mid = (l + r) / 2; //find the point where the branches split
     addOne(x << 1, l, mid, add[x]); //update the left half, from l to mid
