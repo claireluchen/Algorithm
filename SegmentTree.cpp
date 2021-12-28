@@ -18,6 +18,8 @@ now putting 3, 1, 9, 2 into a seg tree, where n = 4
 mid = (1 + 4) / 2 = 2, so 4 represents the range of 1 to mid and 11 is mid + 1 to n
 sum of elements from ll = 1 to rr = 2 is 3 + 1 = 4, sum of ll = 1 to rr = 3 is (sum of 1 to 2) + 3 = 4 + 9 = 13
 the 4 represents the sum of elements from pos 1 to 2, the 11 represents the sum of elements from pos 3 to 4
+
+note that x is the node number (shown in first tree) and l, r represent the interval covered by the node (ex: node 2 has value 4 which covers pos 1 to 2)
 */
 #include <bits/stdc++.h>
 using namespace std;
