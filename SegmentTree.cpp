@@ -1,3 +1,23 @@
+/*
+x has children 2 * x and 2 * x + 1
+note that 2 * x = x << 1 and 2 * x + 1 = x << 1 | 1
+    1
+   / \
+  2   3
+ / \ / \
+4  5 6  7
+
+now putting 3, 1, 9, 2 into a seg tree
+   l=1 r=4
+    15
+   /  \
+ 1-2  3-4
+  4    11
+ / \  / \
+3  1  9  2
+sum of elements from ll = 1 to rr = 2 is 3 + 1 = 4, sum of ll=1 to rr = 3 is 4 + 9 = 13
+the 4 represents the sum of elements from pos 1 to 2
+*/
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -28,7 +48,7 @@ void down(int x, int l, int r){ //transfer the changes applied to parent to the 
 }
 
 void build(int x,int l,int r){ //build the seg tree
- if (l==r) {
+ if (l==r) { //reached the bottom of the tree
   sum[x] = a[l];
   return;
  }
