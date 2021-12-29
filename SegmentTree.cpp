@@ -19,7 +19,7 @@ mid = (1 + 4) / 2 = 2, so 4 represents the range of 1 to mid and 11 is mid + 1 t
 sum of elements from ll = 1 to rr = 2 is 3 + 1 = 4, sum of ll = 1 to rr = 3 is (sum of 1 to 2) + 3 = 4 + 9 = 13
 the 4 represents the sum of elements from pos 1 to 2, the 11 represents the sum of elements from pos 3 to 4
 
-note that x is the node number (shown in first tree, used to store info in the sum[]) and l, r represent the interval covered by the node (ex: node 2 has value 4 which covers pos 1 to 2)
+note that x is the node number (shown in first tree, used to store and access info in sum[x]) and l, r represent the interval covered by node x (ex: node 2 has value 4 which covers pos 1 to 2)
 the children node number of node x is x << 1 and x << 1 | 1
 the right/left bounds of the interval is determined with the midpoint of the parent's left/right bound
 */
@@ -77,7 +77,7 @@ int getsum(int x,int l,int r,int ll,int rr){
  int lsum=0,rsum=0;
  if (ll<=mid) lsum= getsum(x<<1,l,mid,ll,rr); //get the sum of the left half
  if (rr>mid) rsum= getsum(x<<1|1,mid+1,r,ll,rr); //get the sum of the right half
- return lsum+rsum; //add the left and right sum together
+ return lsum+rsum; //add the left and right sum together... if wanting to get the max value between l and r, return max(lsum, rsum)
 }
 
 //add v to all elements from position ll to rr (inclusive) 
