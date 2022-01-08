@@ -13,8 +13,8 @@ edges of the graph so that there is a path between any two nodes. Like trees
 in general, spanning trees are connected and acyclic.
 A minimum spanning tree is a spanning tree whose weight is as small as possible.
 
-Prim¡¯s algorithm resembles Dijkstra¡¯s algorithm. The difference is that Dijkstra¡¯s algorithm 
-always selects an edge whose distance from the starting node is minimum, but Prim¡¯s algorithm 
+Prim's algorithm resembles Dijkstra's algorithm. The difference is that Dijkstra's algorithm 
+always selects an edge whose distance from the starting node is minimum, but Prim's algorithm 
 simply selects the minimum weight edge that adds a new node to the tree
  */
 public class PrimTemplate {
