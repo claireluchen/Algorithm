@@ -2,9 +2,10 @@
 Input:
 The first line contains an integer, the number of Jimmy Bonds and missions.
 The jth integer on the ith line is the probability that ith Jimmy Bond would successfully complete jth mission, given as a percentage.
-
 Output:
 Output the maximum probability of Jimmy Bonds successfully completing all the missions, as a percentage. Each Jimmy Bonds can only take one mission.
+
+Similar problem: https://atcoder.jp/contests/dp/submissions/28097820
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -40,7 +41,7 @@ int main() {
   f[0] = 1;
   for (int i = 0; i < n; i++){ //for each person
     for (int s = 0; s < (1 << n); s++){
-      if (cnt[s] != i + 1) continue; //checking if the current bitmask, s, is valid for i ppl (by checking if it has i 1s)
+      if (cnt[s] != i + 1) continue; //checking if the current bitmask, s, contains i assignments/is valid for i ppl (by checking if it has i 1s)
       f[s] = 0;
       for (int j = 0; j < n; j++){ 
         if ((s & (1 << j)) == 0) continue; //checking whether jth mission is assigned
