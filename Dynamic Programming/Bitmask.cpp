@@ -51,6 +51,6 @@ int main() {
       }
     }
   }
-  cout << fixed << setprecision(10) << f[(1 << n) - 1] * 100;
+  cout << fixed << setprecision(10) << f[(1 << n) - 1] * 100; //print the max probability when all missions are assigned (n 1s)
   return 0;
 }
