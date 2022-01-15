@@ -1,3 +1,12 @@
+/*
+  1          5
+ / \         |
+2   3        6
+|
+4
+parent[4] = 2, parent[2] = 1, parent[3] = 1, parent[1] = 1, parent[6] = 5, parent[5] = 5
+sz[1] = 4, sz[5] = 2
+*/
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -25,12 +34,12 @@ int root2(int x){ //O(log n), path compression
 void merge(int x, int y){ //merge set containing x with set containing y
   int xRoot = root(x);
   int yRoot = root(y);
-  if (sz[x] >= sz[y]){
+  if (sz[xRoot] >= sz[yRoot]){
     parent[yRoot] = xRoot;
-    sz[x] += sz[y];
+    sz[xRoot] += sz[yRoot];
   }else{
     parent[xRoot] = yRoot;
-    sz[y] += sz[x];
+    sz[yRoot] += sz[xRoot];
   }
 }
 
@@ -38,9 +47,9 @@ bool same(int x, int y){ //check if x and y belong to the same set
   return root(x) == root(y);
 }
 
-void initializeSize(){
-  for (int i = 1; i <= n; i++){
-    
+void initializeSize(){ //initialize the size of each set with i being the root
+  for (int i = n; i > 0; i--){ //assumes all children node have higher indexing value than root
+    if (parent[i] != i) sz[parent[i]] += sz[i];
   }
 }
 
@@ -49,7 +58,7 @@ int main() {
   cin.tie(0); cout.tie(0);
   
   cin >> n >> m;
-  for (int i = 0; i < n; i++) {
+  for (int i = 1; i <= n; i++) {
     parent[i] = i;
     sz[i] = 1;
   }
@@ -58,12 +67,11 @@ int main() {
     parent[y] = x;
   }
   initializeSize(); //initialize the size of the sets starting at each node
+cout << sz[1] << " " << sz[5] << endl;
 
   cout << "Get the root of: " << endl;
   int r; cin >> r;
   cout << root(r) << endl;
- 
-  cout << sz[1] << " " << sz[5] << endl;
 
   cout << "Merge set containing x with set containing y: " << endl;
   int x, y; cin >> x >> y;
@@ -75,6 +83,6 @@ int main() {
   cout << "Check if x and y belong to the same union: " << endl;
   cin >> x >> y;
   cout << same(x, y) << endl;
-
+  cout << sz[1] << endl;
   return 0;
 }
