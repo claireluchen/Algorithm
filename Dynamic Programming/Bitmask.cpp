@@ -16,7 +16,6 @@ const int mod = 1e9 + 7;
 int n;
 double arr[maxn][maxn];
 double f[1 << maxn]; //bitmask dp
-char cnt[1 << maxn]; //keeping track of num of 1s in binary representation of each number
 
 int main() {
   ios_base::sync_with_stdio(false); 
@@ -29,19 +28,12 @@ int main() {
       arr[i][j] /= 100;
     }
   }
-  for (int i = 1; i < (1 << n); i++){ //count the number of 1s in each number from i to 1 << n to use later
-    int sum = 0;
-    int temp = i;
-    while (temp){
-      if (temp & 1) sum++;
-      temp >>= 1;
-    }
-    cnt[i] = sum;
-  }
+
   f[0] = 1;
   for (int i = 0; i < n; i++){ //for each person
     for (int s = 0; s < (1 << n); s++){
-      if (cnt[s] != i + 1) continue; //checking if the current bitmask, s, contains i assignments/is valid for i ppl (by checking if it has i 1s)
+     //__builtin_popcount(s) gives the number of 1s in s
+      if (__builtin_popcount(s) != i + 1) continue; //checking if the current bitmask, s, contains i assignments/is valid for i ppl (by checking if it has i 1s)
       f[s] = 0;
       for (int j = 0; j < n; j++){ 
         if ((s & (1 << j)) == 0) continue; //checking whether jth mission is assigned
