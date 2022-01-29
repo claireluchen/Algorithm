@@ -9,7 +9,7 @@ vector<int> adj[maxn];
 int dis[maxn];
 bool vis[maxn];
 
-void dfs(int cur, int d){
+void dfs(int cur, int d){ //current node, distance of current node from root
   if (vis[cur]) return;
   vis[cur] = true;
   dis[cur] = d;
@@ -33,7 +33,7 @@ int main() {
   cin >> dest;
   cout << dis[dest] << endl; //print distance from root node to dest, not guranteed to be the shortest distance
   
-  bool connected = true;
+  bool connected = true; //determine whether whole graph is connected
   for (int i = 1; i <= n; i++){
     if (!vis[i]){
       connected = false;
@@ -42,5 +42,18 @@ int main() {
   }
   cout << (connected ? "Yes" : "No") << endl;
 
+  //find the max distance from a root
+  //can be used to find diameter of tree. if u is the farthest node from v, run dfs using u as root then find the fatheest node from u, call it w
+  //then diameter has endpoints v and w
+  //to find the radius, for every node on the diameter called x, take the max of (all min(dis of x to v, dis of x to w))
+  int maxDis = -1, maxDisNode = 0;
+  for (int i = 1; i <= n; i++){ 
+    if (maxDis < dis[i]){
+      maxDis = dis[i];
+      maxDisNode = i;
+    }
+  }
+  cout << maxDisNode << ": " << maxDis << endl;
+  
   return 0;
 }
