@@ -1,5 +1,5 @@
 int n;
-int a[1005], c[1005]; //对应原数组和树状数组
+int a[1005], c[1005]; //a is original array, c is the tree's array
 
 int lowbit(int x){ //returns the rightmost 1 and the 0s to the right of it, ex: 110100 would return 100
     return x&(-x);
